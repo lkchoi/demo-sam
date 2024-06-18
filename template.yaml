@@ -4,23 +4,15 @@ Globals:
   Function:
     Architectures:
       - x86_64
-    MemorySize: 128
+    MemorySize: 32
     Runtime: nodejs20.x
-    Timeout: 15
-  Api:
-    Cors:
-      AllowMethods: "'GET,POST,OPTIONS'"
-      AllowHeaders: "'content-type'"
-      AllowOrigin: "'*'"
+    Timeout: 10
 Resources:
   RestApiFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: src/
       Handler: api.handler
-      Policies:
-        - DynamoDBCrudPolicy:
-            TableName: clouda
       Events:
         ApiGatewayProxyEvent:
           Properties:
